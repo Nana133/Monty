@@ -1,11 +1,13 @@
+
+
 #include "monty.h"
 #include <string.h>
 
-int is_empty_line(char *line, char *delims);
 void free_tokens(void);
 unsigned int token_arr_len(void);
-int run_monty(FILE *script_fd);
+int is_empty_line(char *line, char *delims);
 void (*get_op_func(char *opcode))(stack_t**, unsigned int);
+int run_monty(FILE *script_fd);
 
 /**
  * free_tokens - Frees the global op_toks array of strings.
@@ -39,10 +41,10 @@ unsigned int token_arr_len(void)
 
 /**
  * is_empty_line - Checks if a line read from getline only contains delimiters.
- * @line: Pointer to line.
- * @delims: String of delimiter characters.
+ * @line: A pointer to the line.
+ * @delims: A string of delimiter characters.
  *
- * Return: If line only contains delimiters - 1.
+ * Return: If the line only contains delimiters - 1.
  *         Otherwise - 0.
  */
 int is_empty_line(char *line, char *delims)
@@ -67,7 +69,7 @@ int is_empty_line(char *line, char *delims)
  * get_op_func - Matches an opcode with its corresponding function.
  * @opcode: The opcode to match.
  *
- * Return: Pointer to corresponding function.
+ * Return: A pointer to the corresponding function.
  */
 void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 {
@@ -119,8 +121,9 @@ int run_monty(FILE *script_fd)
 	if (init_stack(&stack) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
-	while (*get_int(&line, &len, script_fd) != -1);
+	while (*get_int(&line, &len, script_fd) != -1)
 	{
+
 		line_number++;
 		op_toks = strtow(line, DELIMS);
 		if (op_toks == NULL)
